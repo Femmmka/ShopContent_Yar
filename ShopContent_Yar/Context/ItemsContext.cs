@@ -1,11 +1,10 @@
 ﻿using ShopContent_Yar.Classes;
-using ShopContent_Yar.Context;
 using ShopContent_Yar.Modell;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Linq;
-
-namespace ShopContent_Yar.Modell
+namespace ShopContent_Yar.Context
 {
     public class ItemsContext : Items
     {
