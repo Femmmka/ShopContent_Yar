@@ -45,7 +45,7 @@ namespace ShopContent_Yar.Modell
             }
         }
         private Categorys category;
-        public Categorys category
+        public Categorys Category
         {
             get { return category; }
             set
