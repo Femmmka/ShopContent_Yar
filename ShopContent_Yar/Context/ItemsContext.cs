@@ -1,9 +1,9 @@
 ﻿using ShopContent_Yar.Classes;
 using ShopContent_Yar.Modell;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Linq;
+
 namespace ShopContent_Yar.Context
 {
     public class ItemsContext : Items
@@ -11,8 +11,9 @@ namespace ShopContent_Yar.Context
         public ItemsContext(bool save = false)
         {
             if (save) Save(true);
-            Сategory = new Categorys();
+            Category = new Categorys();
         }
+
         public static ObservableCollection<ItemsContext> AllItems()
         {
             ObservableCollection<ItemsContext> allItems = new ObservableCollection<ItemsContext>();
@@ -33,8 +34,8 @@ namespace ShopContent_Yar.Context
             }
             Connection.CloseConnection(connection);
             return allItems;
-
         }
+
         public void Save(bool New = false)
         {
             SqlConnection connection;
@@ -44,7 +45,7 @@ namespace ShopContent_Yar.Context
                     "[dbo].[Items](" +
                         "Name," +
                         "Price," +
-                        "Description" +
+                        "Description)" +
                     "OUTPUT Inserted.Id" +
                     $"VALUES (" +
                         $"N'{this.Name}'," +
@@ -58,23 +59,25 @@ namespace ShopContent_Yar.Context
                 Connection.Query("UPDATE [dbo].[Items]" +
                     "SET " +
                         $"Name=N'{this.Name}'," +
-                        $"Price={this.Price}" +
+                        $"Price={this.Price}," +
                         $"Description=N'{this.Description}'," +
                         $"IdCategory={this.Category.Id}" +
-                    "WHERE" +
+                    "WHERE " +
                         $"Id={this.Id}", out connection);
             }
             Connection.CloseConnection(connection);
             MainWindow.init.frame.Navigate(MainWindow.init.Main);
         }
+
         public void Delete()
         {
             SqlConnection connection;
             Connection.Query("DELETE FROM [dbo].[Items]" +
-                "WHERE" +
+                "WHERE " +
                     $"Id={this.Id}", out connection);
             Connection.CloseConnection(connection);
         }
+
         public RelayCommand OnEdit
         {
             get
@@ -85,6 +88,7 @@ namespace ShopContent_Yar.Context
                 });
             }
         }
+
         public RelayCommand OnSave
         {
             get
@@ -96,6 +100,7 @@ namespace ShopContent_Yar.Context
                 });
             }
         }
+
         public RelayCommand OnDelete
         {
             get
@@ -108,5 +113,4 @@ namespace ShopContent_Yar.Context
             }
         }
     }
-}
 }

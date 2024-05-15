@@ -10,6 +10,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ShopContent_Yar.View;
+using ShopContent_Yar.ViewModell;
 
 namespace ShopContent_Yar.View
 {
@@ -21,6 +23,8 @@ namespace ShopContent_Yar.View
         public Main()
         {
             InitializeComponent();
+            DataContext = new VMItems();
         }
+
     }
 }

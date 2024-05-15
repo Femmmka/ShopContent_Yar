@@ -4,11 +4,12 @@ namespace ShopContent_Yar.Classes
 {
     class Connection
     {
-        private static readonly string config = "server=student.permaviat.ru;" +
+        private static readonly string config = "server=127.0.0.1;port=3306;Trusted_Connection=No;database=ShopContent;uid=root;pwd=;";
+        /*"server=student.permaviat.ru;" +
             "Trusted_Connection=No;" +
             "DataBase=ShopContent;" +
             "User=***;" +
-            "PWD=***";
+            "PWD=***";*/
         public static SqlConnection OpenConnection()
         {
             SqlConnection connection = new SqlConnection(config);
